@@ -1,0 +1,29 @@
+@mixin desctop() {
+    @media (min-width: $desctopMedia) {
+        @content
+    }
+}
+
+@mixin tabletAndMobile() {
+    @media (max-width: $desctopMedia - 1) {
+        @content
+    }
+}
+
+@mixin tablet() {
+    @media (min-width: $tabletMedia) and (max-width:$desctopMedia - 1) {
+        @content
+    }
+}
+
+@mixin mobile() {
+    @media (max-width: $tabletMedia - 1) {
+        @content
+    }
+}
+
+@mixin semidesctop() {
+    @media (width: 1024px) {
+        @content
+    }
+}
