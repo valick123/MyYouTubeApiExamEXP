@@ -4,7 +4,7 @@ const initialState = {
 }
 export const mainReducer = (state = initialState, action) =>{
     switch(action.type){
-        case "ADD_YOUTUBE_VIDEO_INFO":{
+        case "ADD_NEW_DATA":{
            
             return {
                 ...state,

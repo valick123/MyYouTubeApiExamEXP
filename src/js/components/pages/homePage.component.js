@@ -12,44 +12,44 @@ const HomePageComponent = props =>{
          protocolRegexp: /\w+\:\/\//i,
          sourceRegexp: /(\w+\.)*\w+\.\w+/i,
          paramsRedexp:/((\w+\?)?((\&|#)?\w+\=?\w+(\-)?(\.\w+)?\&?)*)$/gi,
+         newParamRegexp:/(\w+\=(\w+(\-)?)*)|\/\w{6,}(\?){0,0}/gi
     }
     const Cards = {
         YouTube: YouTubeCard,
 
     }
-    const parseYoutubeUrl = (value) =>{
-        let videoData = {
+    const parseUrl = (value) =>{
+        let params = {};
+       value.match(RegExps.newParamRegexp).forEach(param =>{
+           let splited = param.split("=");
+           if(splited[1]){
+           params[splited[0]] = splited[1]; 
+           } else {
+               params.id = splited[0].replace(/\//,"");
+           }
+           
+       })
+        let urlData = {
             protocol:value.match(RegExps.protocolRegexp)[0],
             source:"YouTube",
-            params:{
-                start:value.match(RegExps.paramsRedexp)[0].replace(/watch\?/ig, "").match(/(?:t\=)\d+/)
-                    ?+value.match(RegExps.paramsRedexp)[0].replace(/watch\?/ig, "").match(/(?:t\=)\d+/)[0].replace(/t\=/,"")
-                    :0,
-                videoId:value.match(RegExps.paramsRedexp)[0].replace(/watch\?\w+\=/ig, "").match(/(\w+(\-)?)*/i)[0]
-            },
+            params
         };
-        return videoData;
+        console.log(urlData);
+        return urlData;
     }
     const requestProcessing = () =>{
        const value = requestInput.current.value;
        RegExps.protocolRegexp.test(value)
        ?processingUrlRequest(value)
        :processingSearchRequest(value)
-       console.log(value.match(/(\w+\=(\w+(\-)?)*)|\/\w{6,}/g))
+       
     }
-    const processingUrlRequest = (url) =>{
-        switch(sourceSelect.current.value){
-            case "Youtube" :{
+    const processingUrlRequest = (url) =>{        
                 props.dispatch({
-                    type:"ADD_YOUTUBE_VIDEO_INFO",
-                    payload:parseYoutubeUrl(url)
+                    type:"ADD_NEW_DATA",
+                    payload:parseUrl(url)
                 })
-                break;
-            }
-            default:{
-                console.log("Check your request or choose correct source, please...")
-            }
-        }
+              
     }
     const processingSearchRequest = (searchRequest) =>{
         console.log(`Processing Search Request: (${searchRequest})...`);
@@ -79,7 +79,7 @@ const HomePageComponent = props =>{
                 <Row>
                     <Col  md={12}>
                         <input ref={requestInput} type="text" />
-                        <select ref={sourceSelect} defaultValue="Enother">
+                        <select ref={sourceSelect} defaultValue="YouTube">
                             <option value="Youtube">Youtube</option>
                             <option value="Enother">Enother</option>
                         </select>

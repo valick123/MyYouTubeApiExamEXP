@@ -9,7 +9,7 @@ export const YouTubeCard = props =>{
     const[isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
         const api = new YoutubeDataAPI(API_KEY);
-        api.searchVideo(props.info.params.videoId)
+        api.searchVideo(props.info.params.v||props.info.params.id)
             .then(data=> setVideoInfo(data))
             .then(()=>{
                 setIsLoading(false)
@@ -27,7 +27,8 @@ export const YouTubeCard = props =>{
         playerVars: {
           // https://developers.google.com/youtube/player_parameters
           autoplay: 0,
-          start:props.info.params.start
+          start:parseFloat(props.info.params.t) || 0
+            
         },
       };
     return(
@@ -38,7 +39,7 @@ export const YouTubeCard = props =>{
                     videoInfo.items[0].snippet.title
                 }
             </h1>
-            <YouTube videoId={props.info.params.videoId} opts={opts} onReady={_onReady} />
+            <YouTube videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
             <span>
                 {
                     videoInfo.items[0].snippet.publishedAt
