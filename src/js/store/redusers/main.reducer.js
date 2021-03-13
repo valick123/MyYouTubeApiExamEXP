@@ -1,12 +1,14 @@
 const initialState = {
-    videoList:[]
+    
+        YouTube:[]
 }
 export const mainReducer = (state = initialState, action) =>{
     switch(action.type){
-        case "ADD_VIDEO_INFO":{
+        case "ADD_YOUTUBE_VIDEO_INFO":{
+           
             return {
                 ...state,
-                videoList:[action.payload,...state.videoList ]
+                [action.payload.source]:[action.payload,...state[action.payload.source]]
             }
         }
         default:{

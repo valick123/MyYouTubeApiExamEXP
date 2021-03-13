@@ -4,12 +4,12 @@ import {YoutubeDataAPI } from "youtube-v3-api";
 import YouTube from "react-youtube";
 const API_KEY = "AIzaSyBZCu1JM8_p5pYc8Jxk-iG8088B44Tmy8Q";
 
-export const VideoCard = props =>{
+export const YouTubeCard = props =>{
     const [videoInfo, setVideoInfo] = useState(null);
     const[isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
         const api = new YoutubeDataAPI(API_KEY);
-        api.searchVideo(props.params.videoId)
+        api.searchVideo(props.info.params.videoId)
             .then(data=> setVideoInfo(data))
             .then(()=>{
                 setIsLoading(false)
@@ -27,10 +27,9 @@ export const VideoCard = props =>{
         playerVars: {
           // https://developers.google.com/youtube/player_parameters
           autoplay: 0,
-          start:props.params.start
+          start:props.info.params.start
         },
       };
-
     return(
         !isLoading
         ?<div>
@@ -39,7 +38,7 @@ export const VideoCard = props =>{
                     videoInfo.items[0].snippet.title
                 }
             </h1>
-            <YouTube videoId={props.params.videoId} opts={opts} onReady={_onReady} />
+            <YouTube videoId={props.info.params.videoId} opts={opts} onReady={_onReady} />
             <span>
                 {
                     videoInfo.items[0].snippet.publishedAt
