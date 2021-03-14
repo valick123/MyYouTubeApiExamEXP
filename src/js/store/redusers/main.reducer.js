@@ -1,6 +1,6 @@
 const initialState = {
     
-        YouTube:[]
+        content:[]
 }
 export const mainReducer = (state = initialState, action) =>{
     switch(action.type){
@@ -8,7 +8,7 @@ export const mainReducer = (state = initialState, action) =>{
            
             return {
                 ...state,
-                [action.payload.source]:[action.payload,...state[action.payload.source]]
+                content:[action.payload,...state.content]
             }
         }
         default:{

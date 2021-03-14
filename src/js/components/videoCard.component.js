@@ -5,16 +5,7 @@ import YouTube from "react-youtube";
 const API_KEY = "AIzaSyBZCu1JM8_p5pYc8Jxk-iG8088B44Tmy8Q";
 
 export const YouTubeCard = props =>{
-    const [videoInfo, setVideoInfo] = useState(null);
-    const[isLoading, setIsLoading] = useState(true);
-    useEffect(()=>{
-        const api = new YoutubeDataAPI(API_KEY);
-        api.searchVideo(props.info.params.v||props.info.params.id)
-            .then(data=> setVideoInfo(data))
-            .then(()=>{
-                setIsLoading(false)
-            })
-    },[])
+   
 
     const _onReady = e =>{
         e.target.pauseVideo();
@@ -32,26 +23,14 @@ export const YouTubeCard = props =>{
         },
       };
     return(
-        !isLoading
-        ?<div>
-            <h1>
-                {
-                    videoInfo.items[0].snippet.title
-                }
-            </h1>
-            <YouTube videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
-            <span>
-                {
-                    videoInfo.items[0].snippet.publishedAt
-                }
-            </span>
-            <p>
-                {
-                    videoInfo.items[0].snippet.description
-                }
-            </p>
-        </div>
-        :null
+            <div>
+                <p>VideoID:{props.info.params.v || props.info.params.id}</p>
+                <YouTube videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
+            </div>
+            
+            
+           
+        
     )
 }
 
