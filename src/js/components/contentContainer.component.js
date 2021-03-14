@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from 'reactstrap';
-import {YouTubeCard} from "./videoCard.component"
+import {YouTubeCard} from "./YouTubeCard.component"
 import {connect} from "react-redux";
 
 const ContentContainer = props =>{
@@ -11,11 +11,12 @@ const ContentContainer = props =>{
    
     const renderSections = () =>{
         const sectionsList = [];
-        props.content.forEach((item,index)=>{
+        props.content.forEach((item)=>{
             !sectionsList.includes(item.source)
             ?sectionsList.push(item.source)
             :null
         })
+        console.log(sectionsList)
         return sectionsList.map((section)=>{
             return(
                 <div key={section}>
@@ -29,7 +30,7 @@ const ContentContainer = props =>{
                             props.content.map((contentItem,index)=>{
                                 const TagName = Cards[section]
                                 if(contentItem.source === section){
-                                   return <YouTubeCard key={index} info={contentItem}/>
+                                   return <TagName key={index} info={contentItem}/>
                                     
                                 }
                                 
