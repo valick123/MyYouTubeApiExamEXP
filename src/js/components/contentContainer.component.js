@@ -16,7 +16,6 @@ const ContentContainer = props =>{
             ?sectionsList.push(item.source)
             :null
         })
-        console.log(sectionsList);
         return sectionsList.map((section)=>{
             return(
                 <div key={section}>
@@ -30,7 +29,7 @@ const ContentContainer = props =>{
                             props.content.map((contentItem,index)=>{
                                 const TagName = Cards[section]
                                 if(contentItem.source === section){
-                                   return <TagName key={index} info={contentItem}/>
+                                   return <YouTubeCard key={index} info={contentItem}/>
                                     
                                 }
                                 

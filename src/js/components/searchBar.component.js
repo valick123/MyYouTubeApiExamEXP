@@ -8,13 +8,12 @@ const SearchBar = props =>{
     const RegExps = {
          protocolRegexp: /\w+\:\/\//i,
          sourceRegexp: /(\w+\.)*\w+\.\w+/i,
-         paramsRedexp:/((\w+\?)?((\&|#)?\w+\=?\w+(\-)?(\.\w+)?\&?)*)$/gi,
-         newParamRegexp:/(\w+\=(\w+(\-)?)*)|\/\w{6,}(\?){0,0}/gi
+         paramRegexp:/(\w+\=(\w+(\-)?)*)|\/\w{6,}(\?){0,0}/gi
     }
     
-    const parseUrl = (value) =>{
+    const parseUrl = (url) =>{
         let params = {};
-       value.match(RegExps.newParamRegexp).forEach(param =>{
+       url.match(RegExps.paramRegexp).forEach(param =>{
            let splited = param.split("=");
            if(splited[1]){
            params[splited[0]] = splited[1]; 
@@ -24,11 +23,10 @@ const SearchBar = props =>{
            
        })
         let urlData = {
-            protocol:value.match(RegExps.protocolRegexp)[0],
+            protocol:url.match(RegExps.protocolRegexp)[0],
             source:"YouTube",
             params
         };
-        console.log(urlData);
         return urlData;
     }
     const requestProcessing = () =>{

@@ -68,6 +68,7 @@
     "react-youtube": "^7.13.1",
     "reactstrap": "^8.9.0",
     "redux": "^4.0.5",
+    "youtube-api": "^3.0.1",
     "youtube-iframe": "^1.0.3",
     "youtube-v3-api": "^1.1.1"
   }
