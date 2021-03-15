@@ -1,17 +1,20 @@
 import React from "react";
-import { Col, Container, Row } from 'reactstrap';
-import {YouTubeCard} from "./YouTubeCard.component"
-import {connect} from "react-redux";
-
-const ContentContainer = props =>{
+import { connect } from "react-redux";
+import { Col, Container, Row } from "reactstrap";
+import {YouTubeSearchResultCard }from "./YouTubeSearchResultCard.component"
+const SearchResults = props => {
     const Cards = {
-        YouTube: YouTubeCard,
+        YouTube: YouTubeSearchResultCard,
 
     }
-   
-    const renderSections = () =>{
+    const deleteResults = () =>{
+        props.dispatch({
+            type:'DELETE_SEARCH_RESULTS'
+        })
+    } 
+    const renderSearchResults = () =>{
         const sectionsList = [];
-        props.content.forEach((item)=>{
+        props.searchResults.forEach((item)=>{
             !sectionsList.includes(item.source)
             ?sectionsList.push(item.source)
             :null
@@ -20,7 +23,7 @@ const ContentContainer = props =>{
         return sectionsList.map((section)=>{
             return(
                 <Row key={section}>
-                    <Col md={12}>
+                   <Col md={12} >
                         <h2>
                             {
                                 section
@@ -28,13 +31,12 @@ const ContentContainer = props =>{
                         </h2>
                     </Col>
                     
-                    
                         {
-                            props.content.map((contentItem,index)=>{
+                            props.searchResults.map((contentItem,index)=>{
                                 const TagName = Cards[section]
                                 if(contentItem.source === section){
                                    return (
-                                       <Col md={4} key={index}>
+                                       <Col md={3} key={index}>
                                            <TagName  info={contentItem}/>
                                        </Col>
                                    
@@ -45,36 +47,34 @@ const ContentContainer = props =>{
                             })
                         }
                     
+                 
                 </Row>
+                
             )
         })
     }
-    const deleteContent = () => {
-        props.dispatch({
-            type:"DELETE_ALL_DATA"
-        })
-    }
     return(
-        props.content.length
+        props.searchResults.length
         ?<Container>
             <Row>
                 <Col md={12}>
-                    <h2>Content</h2>
-                    <button onClick={deleteContent} >Delete All</button>
+                <h2>Search Results</h2>
+                <button onClick={deleteResults}>Clear</button> 
                 </Col>
-            </Row>
-            {
-                renderSections()
-            }
-         </Container>
-        :null
+            </Row>    
+                {
+                    renderSearchResults()
+                }
             
+        </Container>     
+        :null
+        
     )
-}    
+}
 
 const mapStateToProps = store =>{
     return {
-        content:store.main.content
+        searchResults:store.main.searchResults
     }
 }
- export default connect(mapStateToProps)(ContentContainer)
+export default connect(mapStateToProps)(SearchResults);

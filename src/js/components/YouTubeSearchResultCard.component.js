@@ -1,9 +1,9 @@
-import React, {useState} from "react";
-import { connect } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import YouTube from "react-youtube";
 
 export const YouTubeSearchResultCard = props =>{
-
+    const dispatch = useDispatch()
     const opts = {
         height: '200px',
         width: '100%',
@@ -11,12 +11,12 @@ export const YouTubeSearchResultCard = props =>{
           // https://developers.google.com/youtube/player_parameters
           autoplay: 0,
           start:parseFloat(props.info.t) || 0,
-          'origin':"http://192.168.100.4:4001"
+
             
         },
       };
       const addToMainContent = () =>{
-        props.dispatch({
+        dispatch({
             type:"ADD_NEW_DATA",
             payload:props.info
         })
@@ -26,7 +26,7 @@ export const YouTubeSearchResultCard = props =>{
 
     }
     return(
-        <div>
+        <div >
             <h2>
                 {
                     props.info.title
@@ -38,9 +38,3 @@ export const YouTubeSearchResultCard = props =>{
         
     )
 }
-const mapStateToProps = store =>{
-    return{
-        main:store.main
-    }
-}
-export default connect(mapStateToProps)(YouTubeSearchResultCard)

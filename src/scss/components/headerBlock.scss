@@ -1,0 +1,19 @@
+.header-block{
+    max-width: $max-width;
+    margin: 0 auto;
+    text-align: center;
+    &-title{
+        text-transform: uppercase;
+        margin-bottom: $margin;
+    }
+    &-text{
+        margin-bottom: 2*$margin;
+        font-size: 1.3em;
+    }
+    &-subtext{
+        padding: 0 2*$padding;
+        margin-bottom: 2*$margin;
+        font-size: 1.05em;
+        color:$subtext-color;
+    }
+}

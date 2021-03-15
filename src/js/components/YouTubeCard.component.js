@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import {YoutubeDataAPI } from "youtube-v3-api";
 import YouTube from "react-youtube";
+import { useDispatch } from "react-redux";
 const API_KEY = "AIzaSyBZCu1JM8_p5pYc8Jxk-iG8088B44Tmy8Q";
 
 export const YouTubeCard = props =>{
+    const dispatch = useDispatch();
     const [videoData, setVideoData] = useState();
     const [isLoading, setIsLoading] = useState(true);
     useEffect(()=>{
@@ -23,19 +25,27 @@ export const YouTubeCard = props =>{
         
 
     }
+    const deleteItem = () => {
+        dispatch({
+            type:"DELETE_DATA_ITEM",
+            payload:props.info.params.v || props.info.params.id
+        })
+    }
     const opts = {
         height: '390',
-        width: '640',
+        width: '100%',
         playerVars: {
           // https://developers.google.com/youtube/player_parameters
           autoplay: 0,
-          start:parseFloat(props.info.params.t) || 0
+          start:parseFloat(props.info.params.t) || 0,
+          enablejsapi:1
             
         },
       };
     return(
         !isLoading
             ?<div>
+                <button onClick={deleteItem} >delete</button>
                 <h2>
                     {
                         videoData.items[0].snippet.title

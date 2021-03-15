@@ -3,7 +3,8 @@ import {Container} from 'reactstrap';
 import {connect} from "react-redux";
 import SearchBar from "../searchBar.component";
 import ContentContainer from '../contentContainer.component';
-import CustomModal from '../CustomModal.component';
+import { HeaderBlock } from '../headerBlock.component';
+import SearchResults from '../searchresults.component';
 
 const HomePageComponent = props =>{
    
@@ -11,11 +12,12 @@ const HomePageComponent = props =>{
     
     return(    
                
-            <Container>
+            <>
+                <HeaderBlock/>
                 <SearchBar/>
-                <ContentContainer/>   
-                <CustomModal/>                    
-            </Container>          
+                <SearchResults/>  
+                <ContentContainer/>                 
+            </>          
         )
     
 }

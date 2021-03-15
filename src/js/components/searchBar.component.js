@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import {connect} from "react-redux";
 import {YoutubeDataAPI } from "youtube-v3-api";
-import YouTubeSearchResultCard from './YouTubeSearchResultCard.component';
 
 const API_KEY = "AIzaSyBZCu1JM8_p5pYc8Jxk-iG8088B44Tmy8Q";
 
@@ -35,7 +34,7 @@ const SearchBar = props =>{
     }
     const youTubeSearchResults = (searchRequest,source)=>{
         const api = new YoutubeDataAPI(API_KEY);
-        api.searchAll(searchRequest,null,{type:"video"})
+        api.searchAll(searchRequest,20,{type:"video"})
             .then(data=>{
                 console.log(data.items);
                 let searchResults = [];
@@ -53,20 +52,13 @@ const SearchBar = props =>{
                     searchResults.push(videoData)
                 })
                 console.log(searchResults)
-                return searchResults.map((item,index)=>{
-                    return <YouTubeSearchResultCard key = {index} info={item}/>
-                })
+                return searchResults
                  
             })
             .then(results =>{
                 props.dispatch({
-                    type:"ADD_MODAL_CONTENT",
+                    type:"GET_SEARCH_RESULTS",
                     payload:results
-                })
-            })
-            .then(()=>{
-                props.dispatch({
-                    type:"MODAL_TOGGLE"
                 })
             })
         
@@ -77,7 +69,9 @@ const SearchBar = props =>{
        const selectedSource = sourceSelect.current.value
        RegExps.protocolRegexp.test(request)
        ?urlRequestProcessing(request,selectedSource)
-       :searchRequestProcessing(request,selectedSource)
+       :searchRequestProcessing(request,selectedSource);
+       requestInput.current.value = "";
+
        
     }
     const urlRequestProcessing = (url,source) =>{     
@@ -105,7 +99,8 @@ const SearchBar = props =>{
             }
             case "YouTube":{
                 youTubeSearchResults(searchRequest,source)
-               
+                console.log(`Processing Search Request: (${searchRequest}) on ${source}...`);
+                break;
             }
             default:{
 
@@ -116,19 +111,31 @@ const SearchBar = props =>{
         } 
         
     }
+    const handleKeyPress = (e) =>{
+        if(e.key === "Enter"){
+            requestProcessing();
+        }
+    }
     return(
         <Container>
             <Row>
                 <Col md={12}>
-                <input ref={requestInput} type="text" placeholder="Enter Url or Search request" />
-                        <select ref={sourceSelect} defaultValue="Enother">
-                            <option value="YouTube">Youtube</option>
-                            <option value="Enother">Enother</option>
-                        </select>
-                        <button onClick={requestProcessing}>add</button>
+                    <div className="searchBar">
+                        <input ref={requestInput} onKeyPress={handleKeyPress} className="searchBar-input" type="text" placeholder="Enter Url or Keyword" />
+                        <div className="searchBar-controls">
+                            <select ref={sourceSelect} className="custom-select searchBar-select" defaultValue="YouTube">
+                                <option value="YouTube">YouTube</option>
+                                <option value="Enother">Enother</option>
+                            </select>
+                            <button className="searchBar-btn" onClick={requestProcessing}>Search</button>
+                        </div>
+                        
+                    </div>                        
                 </Col>
             </Row>
         </Container>
+            
+        
     )
 }
 

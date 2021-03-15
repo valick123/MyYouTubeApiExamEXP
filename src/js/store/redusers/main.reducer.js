@@ -1,7 +1,6 @@
 const initialState = {    
         content:[],
-        isOpenModal:false,
-        modalContent:null,
+        searchResults:[]
 }
 export const mainReducer = (state = initialState, action) =>{
     switch(action.type){
@@ -12,16 +11,28 @@ export const mainReducer = (state = initialState, action) =>{
                 content:[action.payload,...state.content]
             }
         }
-        case "MODAL_TOGGLE":{
-            return{
-                ...state,
-                isOpenModal:!state.isOpenModal
-            }
-        }
-        case "ADD_MODAL_CONTENT":{
+        case "GET_SEARCH_RESULTS":{
             return {
                 ...state,
-                modalContent:action.payload
+                searchResults:action.payload
+            }
+        }
+        case "DELETE_SEARCH_RESULTS":{
+            return{
+                ...state,
+                searchResults:[]
+            }
+        }
+        case "DELETE_DATA_ITEM":{
+            return{
+                ...state,
+                content:[...state.content.filter(item=>item.params.id === action.payload || item.params.v === action.payload ?false:true )]
+            }
+        }
+        case "DELETE_ALL_DATA":{
+            return{
+                ...state,
+                content:[]
             }
         }
         default:{
