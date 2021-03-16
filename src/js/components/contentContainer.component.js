@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 const ContentContainer = props =>{
     const Cards = {
         YouTube: YouTubeCard,
-
+        YouTube_Example:YouTubeCard
     }
    
     const renderSections = () =>{
@@ -23,7 +23,7 @@ const ContentContainer = props =>{
                     <Col md={12}>
                         <h2>
                             {
-                                section
+                                section.replace(/\_/, " ")
                             }
                         </h2>
                     </Col>
@@ -34,7 +34,7 @@ const ContentContainer = props =>{
                                 const TagName = Cards[section]
                                 if(contentItem.source === section){
                                    return (
-                                       <Col md={4} key={index}>
+                                       <Col style={{marginBottom:20}}  md={6} lg={4}  key={index}>
                                            <TagName  info={contentItem}/>
                                        </Col>
                                    
@@ -56,11 +56,14 @@ const ContentContainer = props =>{
     }
     return(
         props.content.length
-        ?<Container>
+        ?<Container fluid={true}>
             <Row>
                 <Col md={12}>
-                    <h2>Content</h2>
-                    <button onClick={deleteContent} >Delete All</button>
+                    <div className="sectionHeader">
+                        <h2 className="sectionHeader-title" >Content</h2>
+                        <button className="sectionHeader-btn" onClick={deleteContent} >Delete All</button>
+                    </div>
+                   
                 </Col>
             </Row>
             {

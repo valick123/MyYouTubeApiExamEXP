@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import {YoutubeDataAPI } from "youtube-v3-api";
 import YouTube from "react-youtube";
 import { useDispatch } from "react-redux";
-const API_KEY = "AIzaSyBZCu1JM8_p5pYc8Jxk-iG8088B44Tmy8Q";
+const API_KEY = "AIzaSyCN0YB_2GCEinwhT7RSl4akkaTmYL7HOm0";
 
 export const YouTubeCard = props =>{
     const dispatch = useDispatch();
@@ -31,8 +31,12 @@ export const YouTubeCard = props =>{
             payload:props.info.params.v || props.info.params.id
         })
     }
+    const parseDate = () => {
+        const date = new Date(videoData.items[0].snippet.publishedAt );
+        return(`Published: ${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`)
+    }
     const opts = {
-        height: '390',
+        height: '250px',
         width: '100%',
         playerVars: {
           // https://developers.google.com/youtube/player_parameters
@@ -44,60 +48,51 @@ export const YouTubeCard = props =>{
       };
     return(
         !isLoading
-            ?<div>
-                <button onClick={deleteItem} >delete</button>
-                <h2>
-                    {
-                        videoData.items[0].snippet.title
-                    }
-                </h2>
-                <YouTube videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
-                <div>
-                    <span>
-                        likes:
+            ?<div className="youtubeCard" >
+                
+                
+                <YouTube containerClassName="youtubeCard-iframe" videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
+                <div className="youtubeCard-info">
+                    <h2 className="youtubeCard-title">
                         {
-                            videoData.items[0].statistics.likeCount
+                            
+                            videoData.items[0].snippet.title
                         }
-                    </span>
-                    <span>
-                        dislikes:
+                    </h2>
+                    <div className="youtubeCard-statistics">
+                        <span className="youtubeCard-likes">
+                            {
+                                videoData.items[0].statistics.likeCount
+                            }
+                        </span>
+                        <span className="youtubeCard-dislikes">
+                            {
+                                videoData.items[0].statistics.dislikeCount
+                            }
+                        </span>
+                        <span className="youtubeCard-views">
+                            {
+                                videoData.items[0].statistics.viewCount
+                            }
+                        </span>
+                        <span className="youtubeCard-commentsCount">
+                            {
+                                videoData.items[0].statistics.commentCount
+                            }
+                        </span>
+                    </div>
+                    <p className="youtubeCard-description">
                         {
-                            videoData.items[0].statistics.dislikeCount
+                            videoData.items[0].snippet.description
                         }
-                    </span>
-                    <span>
-                        views:
-                        {
-                            videoData.items[0].statistics.viewCount
-                        }
-                    </span>
-                    <span>
-                        comments:
-                        {
-                            videoData.items[0].statistics.commentCount
-                        }
-                    </span>
+                    </p>
+                    <div className="youtubeCard-buttonGroup">
+                        <button className="youtubeCard-btn" onClick={deleteItem} >delete</button>
+                    </div>
                 </div>
-                <p>
-                    {
-                       videoData.items[0].snippet.channelTitle 
-                    }
-                </p>
-                <p>
-                    {
-                       videoData.items[0].snippet.tags  
-                    }
-                </p>
-                <p>
-                    {
-                       videoData.items[0].snippet.publishedAt  
-                    }
-                </p>
-                <p>
-                    {
-                       videoData.items[0].snippet.description
-                    }
-                </p>
+                
+                
+                
             </div>
             :null
     )

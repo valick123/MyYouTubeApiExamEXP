@@ -5,7 +5,7 @@ import YouTube from "react-youtube";
 export const YouTubeSearchResultCard = props =>{
     const dispatch = useDispatch()
     const opts = {
-        height: '200px',
+        height: '250px',
         width: '100%',
         playerVars: {
           // https://developers.google.com/youtube/player_parameters
@@ -21,19 +21,40 @@ export const YouTubeSearchResultCard = props =>{
             payload:props.info
         })
       }
+      const parseDate = () => {
+          const date = new Date(props.info.publishedAt);
+          return(`Published: ${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`)
+      }
       const _onReady = e =>{
         e.target.pauseVideo();
 
     }
     return(
-        <div >
-            <h2>
-                {
-                    props.info.title
-                }
-            </h2>
-            <YouTube videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
-            <button onClick={addToMainContent}>Choose</button>
+        <div className="youtybeSearchCard" >
+                <YouTube  containerClassName="youtybeSearchCard-iframe"  videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
+            
+            <div className="youtybeSearchCard-info">
+               <h2 className="youtybeSearchCard-title">
+                    {
+                        props.info.title
+                    }
+                </h2>
+                <p className="youtybeSearchCard-date">
+                    
+                    {
+                        parseDate()
+                    }
+                </p>
+                <p className="youtybeSearchCard-description">
+                    {
+                        props.info.description
+                    }
+                </p>
+                <div className="youtybeSearchCard-buttonGroup">
+                    <button className="youtybeSearchCard-btn" onClick={addToMainContent}>Choose</button> 
+                </div>
+            </div>
+            
         </div>
         
     )

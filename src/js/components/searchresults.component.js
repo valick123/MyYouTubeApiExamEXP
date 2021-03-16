@@ -36,7 +36,7 @@ const SearchResults = props => {
                                 const TagName = Cards[section]
                                 if(contentItem.source === section){
                                    return (
-                                       <Col md={3} key={index}>
+                                       <Col style={{marginBottom:20}}  md={6} lg={4}  key={index}>
                                            <TagName  info={contentItem}/>
                                        </Col>
                                    
@@ -55,11 +55,14 @@ const SearchResults = props => {
     }
     return(
         props.searchResults.length
-        ?<Container>
+        ?<Container fluid={true}>
             <Row>
                 <Col md={12}>
-                <h2>Search Results</h2>
-                <button onClick={deleteResults}>Clear</button> 
+                    <div className="sectionHeader">
+                        <h2 className="sectionHeader-title">Search Results</h2>
+                        <button className="sectionHeader-btn" onClick={deleteResults}>Clear</button> 
+                    </div>
+                
                 </Col>
             </Row>    
                 {

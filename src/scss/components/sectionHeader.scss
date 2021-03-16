@@ -1,0 +1,25 @@
+.sectionHeader{
+    display: flex;
+    flex-direction: column;
+    padding: $padding 0;
+    &-title{
+        text-align: center;
+    }
+    &-btn{
+        padding: $padding;
+        background-color: $danger-color;
+        border-radius: 5px;
+        border:3px solid darken($danger-color,10%);
+        color:#fff;
+        text-transform: uppercase;
+        align-self:baseline;
+        
+    }
+}
+@include mobile{
+    .sectionHeader{
+        &-btn{
+            align-self: auto;
+        }
+    }
+}

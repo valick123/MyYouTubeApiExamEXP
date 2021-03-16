@@ -1,5 +1,10 @@
 const initialState = {    
-        content:[],
+        content:[
+            {
+                params: {id: "Bluxbh9CaQ0"},
+                source: "YouTube_Example",
+            },
+        ],
         searchResults:[]
 }
 export const mainReducer = (state = initialState, action) =>{

@@ -3,7 +3,7 @@ import { Col, Container, Row } from 'reactstrap';
 import {connect} from "react-redux";
 import {YoutubeDataAPI } from "youtube-v3-api";
 
-const API_KEY = "AIzaSyBZCu1JM8_p5pYc8Jxk-iG8088B44Tmy8Q";
+const API_KEY = "AIzaSyCN0YB_2GCEinwhT7RSl4akkaTmYL7HOm0";
 
 const SearchBar = props =>{
     const requestInput = useRef();
@@ -147,6 +147,9 @@ const mapStateToProps = store =>{
     }
 }
  export default connect(mapStateToProps)(SearchBar)
+
+
+ 
 
     
         
