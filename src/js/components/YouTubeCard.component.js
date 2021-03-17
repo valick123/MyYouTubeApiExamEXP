@@ -47,8 +47,8 @@ export const YouTubeCard = props =>{
           // https://developers.google.com/youtube/player_parameters
           autoplay: 0,
           start:parseFloat(props.info.params.t) || 0,
-          enablejsapi:1
-            
+          origin:"https://valick123.github.io/MyYouTubeApiExamEXP/"            
+
         },
       };
     return(
@@ -64,6 +64,11 @@ export const YouTubeCard = props =>{
                             videoData.items[0].snippet.title
                         }
                     </h2>
+                    <p className="youtubeCard-date">
+                        {
+                            parseDate()
+                        }
+                    </p>
                     <div className="youtubeCard-statistics">
                         <span className="youtubeCard-likes youtubeCard-statistics-item">
                             <FontAwesomeIcon className="youtubeCard-statistics-ico" icon="thumbs-up" />

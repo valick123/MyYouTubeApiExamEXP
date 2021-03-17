@@ -11,8 +11,7 @@ export const YouTubeSearchResultCard = props =>{
           // https://developers.google.com/youtube/player_parameters
           autoplay: 0,
           start:parseFloat(props.info.t) || 0,
-
-            
+          origin:"https://valick123.github.io/MyYouTubeApiExamEXP/"            
         },
       };
       const addToMainContent = () =>{
