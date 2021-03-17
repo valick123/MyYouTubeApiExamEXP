@@ -4,6 +4,18 @@ const initialState = {
                 params: {id: "Bluxbh9CaQ0"},
                 source: "YouTube_Example",
             },
+            {
+                params: {v: "6QjIHnb5Ivs"},
+                source: "YouTube_Example"
+            },
+            {
+                params: {v: "ZfCOGMs5-v0"},
+                source: "YouTube_Example"
+            },
+            {
+                params: {v: "gx2AxPtETNU"},
+                source: "YouTube_Example"
+            }
         ],
         searchResults:[]
 }

@@ -30,28 +30,28 @@ export const YouTubeSearchResultCard = props =>{
 
     }
     return(
-        <div className="youtybeSearchCard" >
-                <YouTube  containerClassName="youtybeSearchCard-iframe"  videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
+        <div className="youtubeCard" >
+                <YouTube  containerClassName="youtubeCard-iframe"  videoId={props.info.params.v || props.info.params.id} opts={opts} onReady={_onReady} />
             
-            <div className="youtybeSearchCard-info">
-               <h2 className="youtybeSearchCard-title">
+            <div className="youtubeCard-info">
+               <h2 className="youtubeCard-title">
                     {
                         props.info.title
                     }
                 </h2>
-                <p className="youtybeSearchCard-date">
+                <p className="youtubeCard-date">
                     
                     {
                         parseDate()
                     }
                 </p>
-                <p className="youtybeSearchCard-description">
+                <p className="youtubeCard-description">
                     {
                         props.info.description
                     }
                 </p>
-                <div className="youtybeSearchCard-buttonGroup">
-                    <button className="youtybeSearchCard-btn" onClick={addToMainContent}>Choose</button> 
+                <div className="youtubeCard-buttonGroup">
+                    <button className="youtubeCard-btn btn btn-success" onClick={addToMainContent}>Choose</button> 
                 </div>
             </div>
             

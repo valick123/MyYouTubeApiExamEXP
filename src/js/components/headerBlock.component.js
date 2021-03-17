@@ -10,7 +10,7 @@ export const HeaderBlock = props =>{
                         <h1 className="header-block-title">search and url's parse service</h1>
                         <p className="header-block-text">
                             This srevice allows you to search posts by keywords and by existing URL's.
-                            Just enter you request or paste your lihk here, choose necessary sourse and click the button.
+                            Just enter you request or paste your link here, choose necessary sourse and click the button.
                         </p>
                         <p className="header-block-subtext">
                             Now it supports just YouTobe but there is way for improvement.

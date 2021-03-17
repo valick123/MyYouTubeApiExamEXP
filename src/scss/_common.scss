@@ -15,7 +15,7 @@ body {
     background-color: #fafafa;
 
     & .app {
-        padding: 0;
+        padding: $padding*5 0;
         display: flex;
         min-height: 100%;
         flex-direction: column;

@@ -1,11 +1,8 @@
-@import "config/fonts";
 @import "config/responsive";
 @import "config/variables";
 @import "common";
-@import "layout/footer";
-@import "layout/header";
 @import "./components/searchBar.scss";
 @import "./components/headerBlock.scss";
 @import "./components/sectionHeader.scss";
-@import "./components/youtubeSearchCard.scss";
-@import "./components/youtubecard.scss";
+@import "./components/youtubeCard.scss";
+@import "./components/btns.scss"

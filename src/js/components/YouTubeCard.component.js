@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import {YoutubeDataAPI } from "youtube-v3-api";
 import YouTube from "react-youtube";
 import { useDispatch } from "react-redux";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {fas} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const API_KEY = "AIzaSyCN0YB_2GCEinwhT7RSl4akkaTmYL7HOm0";
+
+library.add(fas)
 
 export const YouTubeCard = props =>{
     const dispatch = useDispatch();
@@ -60,22 +65,26 @@ export const YouTubeCard = props =>{
                         }
                     </h2>
                     <div className="youtubeCard-statistics">
-                        <span className="youtubeCard-likes">
+                        <span className="youtubeCard-likes youtubeCard-statistics-item">
+                            <FontAwesomeIcon className="youtubeCard-statistics-ico" icon="thumbs-up" />
                             {
                                 videoData.items[0].statistics.likeCount
                             }
                         </span>
-                        <span className="youtubeCard-dislikes">
+                        <span className="youtubeCard-dislikes youtubeCard-statistics-item">
+                            <FontAwesomeIcon className="youtubeCard-statistics-ico" icon="thumbs-down" />
                             {
                                 videoData.items[0].statistics.dislikeCount
                             }
                         </span>
-                        <span className="youtubeCard-views">
+                        <span className="youtubeCard-views youtubeCard-statistics-item">
+                            <FontAwesomeIcon className="youtubeCard-statistics-ico" icon="eye" />
                             {
                                 videoData.items[0].statistics.viewCount
                             }
                         </span>
-                        <span className="youtubeCard-commentsCount">
+                        <span className="youtubeCard-commentsCount youtubeCard-statistics-item">
+                            <FontAwesomeIcon className="youtubeCard-statistics-ico" icon="comments" />
                             {
                                 videoData.items[0].statistics.commentCount
                             }
@@ -87,7 +96,7 @@ export const YouTubeCard = props =>{
                         }
                     </p>
                     <div className="youtubeCard-buttonGroup">
-                        <button className="youtubeCard-btn" onClick={deleteItem} >delete</button>
+                        <button className="youtubeCard-btn btn btn-danger" onClick={deleteItem} >delete</button>
                     </div>
                 </div>
                 

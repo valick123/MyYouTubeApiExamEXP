@@ -61,7 +61,7 @@ const ContentContainer = props =>{
                 <Col md={12}>
                     <div className="sectionHeader">
                         <h2 className="sectionHeader-title" >Content</h2>
-                        <button className="sectionHeader-btn" onClick={deleteContent} >Delete All</button>
+                        <button className="sectionHeader-btn btn btn-danger" onClick={deleteContent} >Delete All</button>
                     </div>
                    
                 </Col>

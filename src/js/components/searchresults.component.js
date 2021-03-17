@@ -60,7 +60,7 @@ const SearchResults = props => {
                 <Col md={12}>
                     <div className="sectionHeader">
                         <h2 className="sectionHeader-title">Search Results</h2>
-                        <button className="sectionHeader-btn" onClick={deleteResults}>Clear</button> 
+                        <button className="sectionHeader-btn btn btn-danger" onClick={deleteResults}>Clear</button> 
                     </div>
                 
                 </Col>

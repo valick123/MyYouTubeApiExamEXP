@@ -1,0 +1,18 @@
+.btn{
+        padding: $padding;
+        color:#fff;
+        border-width: 3px;
+        border-style: solid;
+        
+        border-radius: 5px;
+        text-transform: uppercase;
+    &.btn-success{
+        background-color: $success-color;
+        border-color: darken($success-color,10%);
+    }
+    &.btn-danger{
+        background-color: $danger-color;
+        border-color: darken($danger-color,10%);
+
+    }
+}
