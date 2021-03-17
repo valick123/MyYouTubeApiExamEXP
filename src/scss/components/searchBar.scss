@@ -13,6 +13,9 @@
         &::placeholder{
             color:$primary-color;
         }
+        &:focus{
+            outline: none;
+        }
     }
     &-controls{
         position: absolute;
