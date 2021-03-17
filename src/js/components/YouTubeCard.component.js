@@ -47,7 +47,8 @@ export const YouTubeCard = props =>{
           // https://developers.google.com/youtube/player_parameters
           autoplay: 0,
           start:parseFloat(props.info.params.t) || 0,
-          origin:"https://valick123.github.io/MyYouTubeApiExamEXP/"            
+          origin:"https://valick123.github.io",
+          host:"https://valick123.github.io"             
 
         },
       };
