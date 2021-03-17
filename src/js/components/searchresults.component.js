@@ -19,7 +19,6 @@ const SearchResults = props => {
             ?sectionsList.push(item.source)
             :null
         })
-        console.log(sectionsList)
         return sectionsList.map((section)=>{
             return(
                 <Row key={section}>

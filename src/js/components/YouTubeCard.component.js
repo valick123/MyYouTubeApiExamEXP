@@ -17,7 +17,6 @@ export const YouTubeCard = props =>{
         const api = new YoutubeDataAPI(API_KEY);
         api.searchVideo(props.info.params.v || props.info.params.id)
             .then(data => {
-                console.log(data);
                 setVideoData(data);
             })
             .then(()=>{
@@ -48,7 +47,8 @@ export const YouTubeCard = props =>{
           autoplay: 0,
           start:parseFloat(props.info.params.t) || 0,
           origin:"https://valick123.github.io",
-          host:"https://valick123.github.io"             
+          host:"https://valick123.github.io",
+          enablejsapi:1                         
 
         },
       };

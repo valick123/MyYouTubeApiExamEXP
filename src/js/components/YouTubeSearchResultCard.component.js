@@ -12,7 +12,8 @@ export const YouTubeSearchResultCard = props =>{
           autoplay: 0,
           start:parseFloat(props.info.t) || 0,
           origin:"https://valick123.github.io",
-          host:"https://valick123.github.io"            
+          host:"https://valick123.github.io",
+          enablejsapi:1            
         },
       };
       const addToMainContent = () =>{

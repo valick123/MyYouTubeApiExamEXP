@@ -29,14 +29,12 @@ const SearchBar = props =>{
             source:source,
             params
         };
-        console.log(urlData)
         return urlData;
     }
     const youTubeSearchResults = (searchRequest,source)=>{
         const api = new YoutubeDataAPI(API_KEY);
         api.searchAll(searchRequest,20,{type:"video"})
             .then(data=>{
-                console.log(data.items);
                 let searchResults = [];
                 data.items.forEach(item=>{
                     const videoData = {
@@ -51,7 +49,6 @@ const SearchBar = props =>{
                     }
                     searchResults.push(videoData)
                 })
-                console.log(searchResults)
                 return searchResults
                  
             })
