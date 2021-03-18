@@ -95,8 +95,14 @@ const SearchBar = props =>{
                 break;
             }
             case "YouTube":{
-                youTubeSearchResults(searchRequest,source)
-                console.log(`Processing Search Request: (${searchRequest}) on ${source}...`);
+                if(searchRequest.length){
+                    youTubeSearchResults(searchRequest,source)
+                    console.log(`Processing Search Request: (${searchRequest}) on ${source}...`);
+                } else {
+                    console.log(`Enter search request, please`);
+                    alert(`Enter search request, please`)
+                }
+                
                 break;
             }
             default:{

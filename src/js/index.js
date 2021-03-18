@@ -1,7 +1,5 @@
 import '../scss/main.scss';
 import 'bootstrap/scss/bootstrap-grid.scss';
-// import 'bootstrap/scss/_modal.scss'
-// import "materialize-css/sass/materialize.scss";
 import React from 'react';
 import{render} from 'react-dom'
 import 'fontsource-roboto';
